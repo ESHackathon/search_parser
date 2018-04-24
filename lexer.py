@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import print_function
 #-------------------------------------------------------------------------------
 # FROM GIST: https://gist.github.com/eliben/5797351

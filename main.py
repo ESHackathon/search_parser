@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import re
 
 from lexer import Lexer
@@ -59,11 +61,29 @@ def parse_strategy(search_strategy):
 def main():
     for sector, query_list in QUERIES.items():
         print("SECTOR: %s" % sector)
+
         for query in query_list:
             parse_query = parse_strategy(query)
+
+            parse_query_joined = []
+            new_terms = []
+            for term,fn in parse_query:
+                if (fn == "TERM"):
+                    new_terms.append(term)
+                else:
+                    if len(new_terms) > 0:
+                        parse_query_joined.append(
+                            (
+                                " ".join(new_terms),
+                                "TERM"
+                            )
+                        )
+                        new_terms = []
+                    parse_query_joined.append((term,fn))
+
             print("ORIGINAL_QUERY:\n\t%s" % query)
             print()
-            print("PARSED_QUERY:\n\t%s" % parse_query)
+            print("PARSED_QUERY:\n\t%s" % parse_query_joined)
             print()
 
 if __name__ == '__main__':

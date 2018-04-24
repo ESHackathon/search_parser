@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 QUERIES = {
     "health": [
         "infertility OR subfertility OR fertility OR ((tubal OR tube OR tubes OR peritubal OR oviduct) AND (block OR block* OR lesion OR disease OR factor OR occlusion OR damage OR adhesio* OR fibrosis OR obstruct*)) OR fallopian OR hydrosalpin* OR aspermi* OR oligospermia OR oligozoospermi* OR azoospermia OR asthenospermia OR asthenozoospermia OR teratospermia OR oligoasthenoteratozoospermi*",
