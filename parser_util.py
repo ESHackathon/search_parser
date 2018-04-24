@@ -71,6 +71,13 @@ def merge_terms(parse_query):
                 )
                 new_terms = []
             parse_query_joined.append((term, type_))
+    if len(new_terms) > 0:
+        parse_query_joined.append(
+            (
+                " ".join(new_terms),
+                "TERM"
+            )
+        )
     return parse_query_joined
 
 def get_terms(search_strategy):
