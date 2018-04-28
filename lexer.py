@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
+
+# TAKEN FROM GIST: https://gist.github.com/eliben/5797351
+# Some changes where done, to support priority in the rules,
+# (will match the rules in order)
+
 #-------------------------------------------------------------------------------
-# FROM GIST: https://gist.github.com/eliben/5797351
 # lexer.py
 #
 # A generic regex-based Lexer/tokenizer tool.
@@ -66,16 +70,10 @@ class Lexer(object):
         # names and map them to token types.
         #
         idx = 1
-        regex_parts = []
+        # regex_parts = []
         self.group_type = {}
 
-        for regex, type_ in rules:
-            groupname = 'GROUP%s' % idx
-            regex_parts.append('(?P<%s>%s)' % (groupname, regex))
-            self.group_type[groupname] = type_
-            idx += 1
-
-        self.regex = re.compile('|'.join(regex_parts))
+        self.rules = rules
         self.skip_whitespace = skip_whitespace
         self.re_ws_skip = re.compile('\S')
 
@@ -104,13 +102,12 @@ class Lexer(object):
                 else:
                     return None
 
-            m = self.regex.match(self.buf, self.pos)
-            if m:
-                groupname = m.lastgroup
-                tok_type = self.group_type[groupname]
-                tok = Token(tok_type, m.group(groupname), self.pos)
-                self.pos = m.end()
-                return tok
+            for rule, rule_type in self.rules:
+                match = re.compile("(%s)" % rule).match(self.buf, self.pos)
+                if match:
+                    tok = Token(rule_type, match.groups()[0], self.pos)
+                    self.pos = match.end()
+                    return tok
 
             # if we're here, no rule matched
             raise LexerError(self.pos)
