@@ -1,0 +1,53 @@
+1 Common Cold/
+2 common cold*.tw.
+3 coryza.tw.
+4 upper respiratory infection*.tw.
+5 upper respiratory tract infections*.tw.
+6 urti.tw.
+7 respiratory tract infections.sh. and upper.tw.
+8 Rhinitis/
+9 rhinit*.tw.
+10 exp Pharyngitis/
+11 pharyngit*.tw.
+12 sore throat*.tw.
+13 exp Nasopharyngitis/
+14 nasopharyngit*.tw.
+15 exp Laryngitis/
+16 laryngit*.tw.
+17 Cough/
+18 cough*.tw.
+19 Nasal Obstruction/
+20 nasal obstruction*.tw.
+21 Sneezing/
+22 sneez*.tw.
+23 Rhinovirus/
+24 rhinovirus*.tw.
+25 or/1-24
+26 exp Anti-Inflammatory Agents, Non-Steroidal/
+27 nsaid*.tw.
+28 ((non-steroid* or nonsteroid* or non steroid*) and (anti-inflammator* or antiinflammator* or anti inflammator*)).tw. 29 Apazone.sh. or apazone.tw.
+30 Aspirin.sh. or aspirin.tw.
+31 celecoxib.nm. or celecoxib.tw.
+32 diclofenac.sh. or diclofenac.tw.
+33 diflunisal.sh. or diflunisal.tw.
+34 etodolac.sh. or etodolac.tw.
+35 fenoprofen.sh. or fenoprofen.tw.
+36 flurbiprofen.sh. or flurbiprofen.tw.
+37 ibuprofen.sh. or ibuprofen.tw.
+38 indomethacin.sh. or indomethacin.tw.
+39 ketoprofen.sh. or ketoprofen.tw.
+40 ketorolac.sh. or ketorolac.tw.
+41 Meclofenamic Acid/
+42 meclofenamate.tw. or meloxicam.nm. or meloxicam.tw.
+43 methyl salicylate.nm. or methylsalicylate.tw. or methyl salicylate.tw. 44 nabumetone.nm. or nabumetone.tw.
+45 naproxen.sh. or naproxen.tw.
+46 nimesulide.nm. or nimesulide.tw.
+47 oxaprozin.nm. or oxaprozin.tw.
+48 phenylbutazone.sh. or phenylbutazone.tw.
+49 piroxicam.sh. or piroxicam.tw.
+50 salicylate.mp.
+51 sulindac.sh. or sulindac.tw.
+52 tenoxicam.nm. or tenoxicam.tw.
+53 tolmetin.sh. or tolmetin.tw.
+54 or/26-53
+55 25 and 54

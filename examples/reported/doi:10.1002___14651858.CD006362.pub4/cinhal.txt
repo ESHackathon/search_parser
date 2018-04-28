@@ -1,0 +1,56 @@
+/* COMMON COLD */
+S1 (MH “Common Cold”) OR (TX “common cold*”)
+S2 TX coryza
+S3 (MH “Respiratory Tract Infections”) or TX “upper respiratory infection*”
+S4 TX “upper respiratory tract infection*”
+S5 TX URTI
+S6 (TX “respiratory tract infection*”) AND (TX upper)
+S7 (MH “Rhinitis”) OR (TX rhinit*)
+S8 (MH “Pharyngitis”) OR (TX pharyngit*)
+S9 TX “sore throat*”
+S10 (MH “Nasopharynx”) OR (TX nasopharyngit*)
+S11 (MH “Laryngitis”) OR (TX laryngit*)
+S12 (MH “Cough”) OR (TX cough*)
+S13 (MH “Nasal Obstruction”) OR (TX nasal obstruction*)
+S14 (MH “Sneezing”) OR (TX sneez*)
+S15 TX rhinovirus
+S16 OR/S1-S15
+/* NSAIDS */
+S17 (MH “Antiinflammatory Agents, Non-Steroidal”) OR (TX nsaid*) OR (TX (non-steroid* OR nonsteroid* OR “non steroid*”) AND TX (anti-inflammator* OR antiinflammator* OR “anti inflammator*”))
+S18 TX azapropazone
+S19 MH “Aspirin” OR aspirin
+S20 MH “Cox-2 Inhibitors” OR TX celecoxib
+S21 MH “Diclofenac” OR TX diclofenac
+S22 TX diflunisal
+S23 MH “Etodolac” OR TX etodolac
+S24 TX fenoprofen
+S25 MH “Flurbiprofen” OR TX flurbiprofen
+S26 MH “Ibuprofen” OR TX ibuprofen
+S27 MH “Indomethacin” OR TX indomethacin
+S28 TX ketoprofen
+S29 MH “Ketorolac” OR TX ketorolac
+S30 TX meclofenamate
+S31 TX meloxicam
+S32 TX (methylsalicylate OR “methyl salicylate”)
+S33 TX nabumetone
+S34 MH “Naproxen” OR TX naproxen
+S35 TX nimesulide
+S36 TX oxaprozin
+S37 MH “Phenylbutazone” OR TX phenylbutazone
+S38 MH “Piroxicam” OR TX piroxicam
+S39 MH “Salicylic Acids” OR TX salicylate
+S40 MH “Sulindac” OR TX sulindac
+S41 TX tenoxicam
+S42 MH “Tolmetin” OR TX tolmetin
+S43 OR/S11-S42
+/* RCT */
+S44 MH “Clinical trial” OR TX “clinical trial”
+S45 MH “Randomized Controlled Trials” OR TX “randomized controlled trial”
+S46 MH “Random Sample” OR TX random*
+S47 MH “Single-Blind Studies” OR TX (singl* AND (mask* OR blind*))
+S48 MH “Double-Blind Studies” OR TX (doubl* AND (mask* OR blind*)) S49 MH “Triple-Blind Studies” OR TX (trilp AND (mask* OR blind*)) S50 MH “Placebos” OR TX placebo
+S51 OR S44-S50
+/* Combine & Limit */
+S52 S16 AND S43 AND S51
+S53 S16 AND S43 AND [crinical trial]/lim S54 S52 OR S53
+S55 S54 AND [2009-2011]/py

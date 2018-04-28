@@ -1,0 +1,55 @@
+/* COMMON COLD */
+#1 ’common cold’/exp OR (common cold*):ti,ab
+#2 coryza:ti,ab
+#3 (’upper respiratory infection’):ti,ab OR (’upper respiratory infections’):ti,ab
+#4 (’upper respiratory tract infection’):ti,ab OR (’upper respiratory tract infections’):ti,ab
+#5 urti:ti,ab
+#6 ((respiratory tract infection:ti,ab) OR (respiratory tract infections:ti,ab)) AND upper:ti,ab #7 ’rhinitis’/exp OR rhinit*:ti,ab
+#8 ’pharyngitis’/exp OR pharyngit*:ti,ab
+#9 ’sore throat’:ti,ab OR ’sore throats’:ti,ab
+#10 ’rhinopharyngitis’/exp OR nasopharyngit*:ti,ab
+#11 ’laryngitis’/exp OR laryngit*:ti,ab
+#12 ’coughing’/exp OR cough*:ti,ab
+#13 ’nose obstruction’/exp OR ’nasal obstruction’:ti,ab
+#14 ’sneezing’/exp OR sneez*:ti,ab
+#15 ’rhinovirus’/exp OR rhinovirus:ti,ab
+#16 OR/#1-#15
+/* NSAIDS */ 
+#17 ’nonsteroid antiinflammatory agent’/exp OR nsaid*:ti,ab OR (((non-steroid OR nonsteroid OR ’non steroid’ OR ’non steroids’) AND (anti-inflammatory OR antiinflammatory OR ’anti inflammatory’)):ti,ab)
+#18 ’azapropazone’/exp OR apazone:ti,ab
+#19 ’acetylsalicylic acid’/exp OR aspirin:ti,ab
+#20 ’celecoxib’/exp OR celecoxib:ti,ab
+#21 ’diclofenac’/exp OR diclofenac:ti,ab
+#22 ’diflunisal’/exp OR diflunisal:ti,ab
+#23 ’etodolac’/exp OR etodolac:ti,ab
+#24 ’fenoprofen’/exp OR fenoprofen:ti,ab
+#25 ’flurbiprofen’/exp OR flurbiprofen:ti,ab
+#26 ’ibuprofen’/exp OR ibuprofen:ti,ab
+#27 ’indometacin’/exp OR indomethacin:ti,ab
+#28 ’ketoprofen’/exp OR ketoprofen:ti,ab
+#29 ’ketorolac’/exp OR ketorolac:ti,ab
+#30 ’meclofenamic acid’/exp OR meclofenamate:ti,ab
+#31 ’meloxicam’/exp OR meloxicam:ti,ab
+#32 ’salicylic acid methyl ester’/exp OR methylsalicylate:ti,ab OR ’methyl salicylate’:ti,ab #33 ’nabumetone’/exp OR nabumetone:ti,ab
+#34 ’naproxen’/exp OR naproxen:ti,ab
+#35 ’nimesulide’/exp OR nimesulide:ti,ab
+#36 ’oxaprozin’/exp OR oxaprozin:ti,ab
+#37 ’phenylbutazone’/exp OR phenylbutazone:ti,ab
+#38 ’piroxicam’/exp OR piroxicam:ti,ab
+#39 ’salicylic acid’/exp OR salicylate:ti,ab
+#40 ’sulindac’/exp OR sulindac:ti,ab
+#41 ’tenoxicam’/exp OR tenoxicam:ti,ab
+#42 ’tolmetin’/exp OR tolmetin:ti,ab
+#43 OR/#17-#42
+/* RCT */
+#44 ’clinical trial’/exp OR ’clinical trial’:ti,ab
+#45 ’randomized controlled trial’/exp OR ’randomized controlled trial’:ti,ab
+#46 ’randomisation’/exp OR random*:ti,ab
+#47 ’single blind procedure’/exp OR (singl*:ti,ab AND (mask*:ti,ab OR blind*:ti,ab)) #48 ’double blind procedure’/exp OR (doubl*:ti,ab AND (mask*:ti,ab OR blind*:ti,ab)) #49 ’triple blind procedure’/exp OR (trip*:ti,ab AND (mask*:ti,ab OR blind*:ti,ab))
+#50 ’placebo’/exp OR placebo:ti,ab
+#51 OR #44-#50
+/* Combine & Limit */
+#52 #16 AND #43 AND #51
+#53 #16 AND #43 AND [randomized controlled trial]/lim
+#54 (#52 OR #53) AND [human]/lim
+#55 #54 AND [2009-2011]/py
