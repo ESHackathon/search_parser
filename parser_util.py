@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 
-from lexer import Lexer
+from lexer import Lexer, LexerError
 RULES = [
     (
         r'\bAND\b',
@@ -43,18 +43,6 @@ def normalize_quotes(query):
 def clear_newlines(query):
     return query.replace("\n", " ")
 
-def parse_strategy(search_strategy):
-    lexer_instance = Lexer(RULES, skip_whitespace=True)
-    normalized_strategy = clear_newlines(normalize_quotes(search_strategy))
-    lexer_instance.input(normalized_strategy)
-    stack = []
-    try:
-        for tok in lexer_instance.tokens():
-            stack.append((tok.val, tok.type))
-    except LexerError as err:
-        print('LexerError at position %s' % err.pos)
-    return stack
-
 def merge_terms(parse_query):
     parse_query_joined = []
     new_terms = []
@@ -80,8 +68,17 @@ def merge_terms(parse_query):
         )
     return parse_query_joined
 
+def parse_strategy(search_strategy):
+    lexer_instance = Lexer(RULES, skip_whitespace=True)
+    normalized_strategy = clear_newlines(normalize_quotes(search_strategy))
+    lexer_instance.input(normalized_strategy)
+    stack = []
+    try:
+        for tok in lexer_instance.tokens():
+            stack.append((tok.val, tok.type))
+    except LexerError as err:
+        print('LexerError at position %s' % err.pos)
+    return merge_terms(stack)
+
 def get_terms(search_strategy):
-    return [
-        text
-        for text, type_ in merge_terms(parse_strategy(search_strategy)) if type_ == "TERM"
-    ]
+    return [part[0] for part in parse_strategy(search_strategy) if part[1] == "TERM"]
