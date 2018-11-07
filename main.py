@@ -1,19 +1,42 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from parser_util import get_terms
-from test_queries import QUERIES
+# [START gae_python37_app]
+import json
 
-def main():
-    for sector, query_list in QUERIES.items():
-        print("SECTOR: %s" % sector)
+from flask import Flask, request
+from flask_cors import CORS
 
-        for query in query_list:
-            parsed_terms = get_terms(query)
+from parser_util import get_terms, parse_strategy
 
-            print("ORIGINAL_QUERY:\n\t%s" % query)
-            print()
-            print("PARSED_QUERY:\n\t%s" % parsed_terms)
-            print()
+DEBUG = True
+app = Flask(__name__)
+app.config.from_object(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
+
+@app.route("/search-parser", methods=['POST'])
+def search_parser():
+    query = request.get_data().decode("utf-8")
+    response = app.response_class(
+        response=json.dumps(parse_strategy(query)),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+@app.route("/search-parser/terms", methods=['POST'])
+def search_terms():
+    query = request.get_data().decode("utf-8")
+    response = app.response_class(
+        response=json.dumps(get_terms(query)),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
 
 if __name__ == '__main__':
-    main()
+    # This is used when running locally only. When deploying to Google App
+    # Engine, a webserver process such as Gunicorn will serve the app. This
+    # can be configured by adding an `entrypoint` to app.yaml.
+    app.run(host='127.0.0.1', port=8080, debug=True)
+# [END gae_python37_app]
